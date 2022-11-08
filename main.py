@@ -2,7 +2,7 @@ import math
 import pandas as pd
 
 # > Função que retorna a distância mínima entre dois clusters
-def findDistance(clusterA, clusterB, length, dimension):
+def minDistance(clusterA, clusterB, length, dimension):
     minDistance = -1
     for i in range(0, length):
         sqrDistance = 0
@@ -25,8 +25,15 @@ encoded_data = pd.get_dummies(data, columns=['Age Groups', 'Genre'])
 del encoded_data['CustomerID']
 encoded_data = encoded_data.apply(lambda x: (x - x.mean()) / x.std(), axis=0)
 
-# > Separação de cada cliente em um vetor
-costumers_data = [encoded_data.transpose()[i].values for i in range(0, 200)]
+# > A ideia base será criar um vetor que indique cada cliente da base
+# original, de forma que, após o agrupamento, seja possível recuperar
+# as informações
+seeker = list(range(0, data['CustomerID'].size))
 
-# > Início da criação dos clusters
-clusters = costumers_data.copy()
+testeA = encoded_data.transpose()[0].values
+testeB = encoded_data.transpose()[1].values
+
+print(
+    testeA
+    #minDistance(testeA, testeB, 2, 11)
+)
